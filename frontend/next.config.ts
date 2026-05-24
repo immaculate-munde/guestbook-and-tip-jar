@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import webpack from "webpack";
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["@creit.tech/stellar-wallets-kit"],
   turbopack: {
     resolveAlias: {
       buffer: "buffer",

@@ -11,9 +11,6 @@ import { StellarWalletsKit } from "@creit.tech/stellar-wallets-kit/sdk";
 import { defaultModules } from "@creit.tech/stellar-wallets-kit/modules/utils";
 import { AlbedoModule } from "@creit.tech/stellar-wallets-kit/modules/albedo";
 import { WalletConnectModule } from "@creit.tech/stellar-wallets-kit/modules/wallet-connect";
-import { HotWalletModule } from "@creit.tech/stellar-wallets-kit/modules/hotwallet";
-import { LedgerModule } from "@creit.tech/stellar-wallets-kit/modules/ledger";
-import { TrezorModule } from "@creit.tech/stellar-wallets-kit/modules/trezor";
 import { Networks } from "@creit.tech/stellar-wallets-kit/types";
 import type { ModuleInterface } from "@creit.tech/stellar-wallets-kit/types";
 import { NETWORK_PASSPHRASE } from "./stellar";
@@ -55,12 +52,9 @@ function buildModules(): ModuleInterface[] {
     if (wc) modules.unshift(wc);
     return modules;
   }
-  const modules: ModuleInterface[] = [
-    ...defaultModules(),
-    new HotWalletModule(),
-    new LedgerModule(),
-    new TrezorModule(),
-  ];
+  // defaultModules: Freighter, xBull, Albedo, Rabet, LOBSTR, Hana, etc.
+  // Ledger/Trezor/HOT omitted — they break Next.js/Turbopack bundling on Vercel.
+  const modules: ModuleInterface[] = [...defaultModules()];
   if (wc) modules.push(wc);
   return modules;
 }
