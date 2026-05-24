@@ -116,6 +116,48 @@ Add these **Environment Variables** in the Vercel dashboard (Production + Previe
 
 Redeploy after changing the contract ID. The Soroban contract itself is **not** deployed by Vercel—it stays on Stellar testnet.
 
+## FAQ
+
+### What does this project do?
+
+Users connect **Freighter**, sign a short guestbook message on **Stellar testnet**, and optionally attach an **XLM tip** sent directly to the contract admin. Messages are stored in a **Soroban** smart contract and shown in the Next.js feed.
+
+### Do I need Freighter?
+
+Yes, to sign messages or send tips. Anyone can **read** the feed without a wallet. Use Freighter on **Testnet** with a funded account ([friendbot](https://laboratory.stellar.org/#account-creator?network=test) for test XLM).
+
+### Where do tips go?
+
+Tips are `transfer` calls on the native XLM Stellar Asset Contract from the signer to the **admin address** passed at contract deploy time. They are not stored inside the guestbook contract.
+
+### Can messages be edited or deleted?
+
+No. The contract is **append-only**. Each `sign_guestbook` call adds a new entry.
+
+### Why HTTPS for local dev?
+
+Freighter requires a secure context. Run `npm run dev` in `frontend` (HTTPS enabled). On Linux, if you see `ERR_CERT_AUTHORITY_INVALID`, install `libnss3-tools`, run `npm run setup:https`, and open the app in **Chrome or Firefox**—not an embedded IDE browser.
+
+### Why did Vercel build fail?
+
+`packages/guestbook_client/dist` is not in git. The Vercel project must use **Root Directory** `frontend` and run `build:client` before `next build` (see [`frontend/vercel.json`](frontend/vercel.json)). Add all `NEXT_PUBLIC_*` env vars in the Vercel dashboard.
+
+### Does Vercel deploy the smart contract?
+
+No. Vercel hosts the **frontend only**. Deploy or upgrade the contract with the Stellar CLI (`npm run setup` or `stellar contract deploy`), then update `NEXT_PUBLIC_GUESTBOOK_CONTRACT_ID` and redeploy the site.
+
+### Is this mainnet-ready?
+
+The example deployment is **testnet**. Moving to mainnet requires redeploying the contract on mainnet, updating env vars, and using real XLM—plus security review and RPC infrastructure appropriate for production.
+
+### How do I change the contract?
+
+1. Edit `contracts/guestbook/src/lib.rs`
+2. `npm run build:contract`
+3. Deploy to testnet and note the new contract ID
+4. Regenerate bindings (`stellar contract bindings typescript …`) and `npm run build:client`
+5. Update `NEXT_PUBLIC_GUESTBOOK_CONTRACT_ID` locally and on Vercel
+
 ## License
 
 Apache-2.0 (Stellar contract template default)
