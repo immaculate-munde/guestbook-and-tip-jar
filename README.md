@@ -113,6 +113,7 @@ Add these **Environment Variables** in the Vercel dashboard (Production + Previe
 | `NEXT_PUBLIC_NETWORK_PASSPHRASE` | `Test SDF Network ; September 2015` |
 | `NEXT_PUBLIC_NATIVE_ASSET_CONTRACT` | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` |
 | `NEXT_PUBLIC_ADMIN_ADDRESS` | Your tip recipient `G...` address |
+| `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` | **Required for mobile** — free at [cloud.reown.com](https://cloud.reown.com) |
 
 Redeploy after changing the contract ID. The Soroban contract itself is **not** deployed by Vercel—it stays on Stellar testnet.
 
