@@ -6,6 +6,7 @@
     "build:client": "npm install --prefix ../packages/guestbook_client && npm run build --prefix ../packages/guestbook_client",
     "setup:https": "bash scripts/setup-https.sh",
     "dev": "next dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem",
+    "dev:http": "next dev",
     "prebuild": "npm run build:client",
     "build": "next build",
     "start": "next start",
