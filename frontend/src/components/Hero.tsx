@@ -40,7 +40,8 @@ export function Hero({ messageCount, totalTipsXlm }: Props) {
         </div>
 
         <p className="text-base leading-relaxed text-[var(--muted)]">
-          Connect Freighter, leave a short message on the Soroban ledger, and
+          Connect any supported Stellar wallet, leave a short message on the
+          Soroban ledger, and
           optionally send a testnet tip directly to the host wallet. Every
           signature is permanent, verifiable, and readable by anyone.
         </p>
