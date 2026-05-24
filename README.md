@@ -122,9 +122,13 @@ Redeploy after changing the contract ID. The Soroban contract itself is **not** 
 
 Users connect **Freighter**, sign a short guestbook message on **Stellar testnet**, and optionally attach an **XLM tip** sent directly to the contract admin. Messages are stored in a **Soroban** smart contract and shown in the Next.js feed.
 
-### Do I need Freighter?
+### Which wallets are supported?
 
-Yes, to sign messages or send tips. Anyone can **read** the feed without a wallet. Use Freighter on **Testnet** with a funded account ([friendbot](https://laboratory.stellar.org/#account-creator?network=test) for test XLM).
+The frontend uses **[Stellar Wallets Kit](https://stellarwalletskit.dev/)**: Freighter, xBull, Albedo, Rabet, LOBSTR, Hana, HOT, Klever, OneKey, Bitget, Fordefi, Cactus Link, Ledger, and Trezor. For **mobile** wallets via WalletConnect, set `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` (from [Reown Cloud](https://cloud.reown.com)) in `.env.local` and on Vercel.
+
+### Do I need a wallet?
+
+Yes, to sign messages or send tips. Anyone can **read** the feed without a wallet. Use **Testnet** with a funded account ([friendbot](https://laboratory.stellar.org/#account-creator?network=test) for test XLM).
 
 ### Where do tips go?
 
