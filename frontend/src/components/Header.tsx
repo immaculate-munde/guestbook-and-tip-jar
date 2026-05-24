@@ -10,7 +10,11 @@ type Props = {
   onDisconnect: () => void;
 };
 
-const nav = ["Home", "Guestbook", "FAQ"];
+const nav = [
+  { label: "Home", href: "#" },
+  { label: "Guestbook", href: "#guestbook" },
+  { label: "FAQ", href: "#faq" },
+] as const;
 
 export function Header({
   address,
@@ -30,15 +34,15 @@ export function Header({
       <nav className="hidden items-center gap-8 md:flex">
         {nav.map((item, i) => (
           <a
-            key={item}
-            href={i === 0 ? "#" : `#${item.toLowerCase()}`}
+            key={item.label}
+            href={item.href}
             className={`text-sm font-medium transition hover:text-[var(--accent)] ${
               i === 0
                 ? "border-b-2 border-[var(--accent)] pb-0.5 text-[var(--foreground)]"
                 : "text-[var(--muted)]"
             }`}
           >
-            {item}
+            {item.label}
           </a>
         ))}
       </nav>
