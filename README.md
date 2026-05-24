@@ -98,6 +98,24 @@ npm run dev
 cargo test -p guestbook
 ```
 
+## Deploy on Vercel
+
+Set the Vercel project **Root Directory** to `frontend`.
+
+The build compiles `packages/guestbook_client` first (`dist/` is not committed). [`frontend/vercel.json`](frontend/vercel.json) and the `prebuild` script handle that automatically.
+
+Add these **Environment Variables** in the Vercel dashboard (Production + Preview):
+
+| Variable | Example |
+|----------|---------|
+| `NEXT_PUBLIC_GUESTBOOK_CONTRACT_ID` | `CCFDP65OT63AUZVYBDWHZNHFG5CDB3YEYIIQAOVC2JIKUODY4D4GJZ7P` |
+| `NEXT_PUBLIC_STELLAR_RPC_URL` | `https://soroban-testnet.stellar.org` |
+| `NEXT_PUBLIC_NETWORK_PASSPHRASE` | `Test SDF Network ; September 2015` |
+| `NEXT_PUBLIC_NATIVE_ASSET_CONTRACT` | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` |
+| `NEXT_PUBLIC_ADMIN_ADDRESS` | Your tip recipient `G...` address |
+
+Redeploy after changing the contract ID. The Soroban contract itself is **not** deployed by Vercel—it stays on Stellar testnet.
+
 ## License
 
 Apache-2.0 (Stellar contract template default)
