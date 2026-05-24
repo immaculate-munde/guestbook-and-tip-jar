@@ -1,6 +1,6 @@
 import { Client } from "guestbook_client";
-import { signTransaction } from "@stellar/freighter-api";
 import { CONTRACT_ID, NETWORK_PASSPHRASE, RPC_URL } from "./stellar";
+import { signWithWallet } from "./wallet-kit";
 
 export type GuestbookClient = Client;
 
@@ -20,14 +20,8 @@ export function createGuestbookClient(publicKey?: string): Client {
 
   if (publicKey) {
     options.signTransaction = async (xdr: string) => {
-      const result = await signTransaction(xdr, {
-        networkPassphrase: NETWORK_PASSPHRASE,
-        address: publicKey,
-      });
-      if (result.error) {
-        throw new Error(String(result.error));
-      }
-      return { signedTxXdr: result.signedTxXdr };
+      const signedTxXdr = await signWithWallet(xdr, publicKey);
+      return { signedTxXdr };
     };
   }
 
