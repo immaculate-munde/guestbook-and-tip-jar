@@ -5,7 +5,8 @@ import { ThemeToggle } from "./ThemeToggle";
 
 type Props = {
   address: string | null;
-  walletLoading: boolean;
+  isConnecting: boolean;
+  walletError: string | null;
   onConnect: () => void;
   onDisconnect: () => void;
 };
@@ -18,7 +19,8 @@ const nav = [
 
 export function Header({
   address,
-  walletLoading,
+  isConnecting,
+  walletError,
   onConnect,
   onDisconnect,
 }: Props) {
@@ -30,7 +32,6 @@ export function Header({
         </div>
         <span className="text-lg font-semibold tracking-tight">Guestbook</span>
       </div>
-
       <nav className="hidden items-center gap-8 md:flex">
         {nav.map((item, i) => (
           <a
@@ -46,15 +47,21 @@ export function Header({
           </a>
         ))}
       </nav>
-
       <div className="flex items-center gap-3">
         <ThemeToggle />
-        <ConnectWalletButton
-          address={address}
-          loading={walletLoading}
-          onConnect={onConnect}
-          onDisconnect={onDisconnect}
-        />
+        <div className="flex flex-col items-end gap-1">
+          <ConnectWalletButton
+            address={address}
+            isConnecting={isConnecting}
+            onConnect={onConnect}
+            onDisconnect={onDisconnect}
+          />
+          {walletError && (
+            <p className="max-w-[12rem] text-right text-xs text-red-500 sm:max-w-xs">
+              {walletError}
+            </p>
+          )}
+        </div>
       </div>
     </header>
   );
