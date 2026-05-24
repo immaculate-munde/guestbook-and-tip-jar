@@ -1,0 +1,16 @@
+{
+  "name": "guestbook-and-tip-jar",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "frontend"
+  ],
+  "scripts": {
+    "build:contract": "stellar contract build",
+    "build:client": "npm run build -w guestbook_client",
+    "dev": "npm run dev -w frontend",
+    "build": "npm run build:client && npm run build -w frontend",
+    "setup": "node initialize.js"
+  }
+}
