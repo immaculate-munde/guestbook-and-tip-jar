@@ -111,7 +111,7 @@ export function GuestbookCard({
 
           {!connectedAddress && (
             <p className="mt-3 text-xs text-white/60">
-              Connect Freighter to sign the guestbook.
+              Connect a Stellar wallet to sign the guestbook.
             </p>
           )}
         </div>
