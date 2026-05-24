@@ -5,6 +5,7 @@ import type { Message } from "guestbook_client";
 import { Header } from "./Header";
 import { Hero } from "./Hero";
 import { GuestbookCard } from "./GuestbookCard";
+import { Faq } from "./Faq";
 import { useFreighter } from "@/hooks/useFreighter";
 import { createGuestbookClient } from "@/lib/contract";
 import { stroopsToXlm, xlmToStroops } from "@/lib/format";
@@ -95,6 +96,8 @@ export function GuestbookApp() {
           />
         </div>
       )}
+
+      <Faq />
 
       <footer className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-8 text-xs text-[var(--muted)]">
         <span>Stellar testnet · Soroban guestbook</span>
